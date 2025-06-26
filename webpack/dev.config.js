@@ -55,16 +55,14 @@ module.exports = merge(webpackCommon, {
       inject: true,
       template: path.resolve(__dirname, '../static/index.html'),
       favicon: path.resolve(__dirname, '../static/favicon.ico')
-    }),
-    new HotModuleReplacementPlugin()
+    })
   ],
 
   devServer: {
     host: env.devServer.host || 'localhost',
     port: env.devServer.port || 3000,
     static: {
-      directory: path.resolve(__dirname, '../static'),
-      watch: true
+      directory: path.resolve(__dirname, '../static')
     },
     compress: true,
     hot: true,
