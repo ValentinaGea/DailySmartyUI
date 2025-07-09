@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 class SearchBar extends Component {
 
-    handleFormSubmit = ({ query }) => {
-        console.log('trying to handle submit for query', query);
-        this.props.navigate(`/results?query=${query}`);  // ejemplo de navegación
+    handleFormSubmit  = ({ query }) => {
+      if (this.props.onSubmit) {
+          this.props.onSubmit(query);
+        } else {
+          console.warn('onSubmit prop no está definida en SearchBar');
+        }
+        this.props.onSubmit(query);
     }
 
     renderInput = (field) => {
@@ -17,24 +21,25 @@ class SearchBar extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <form className="search-bar" onSubmit={handleSubmit(this.handleFormSubmit)}>
+            <form className="search-bar" onSubmit={handleSubmit(this.handleFormSubmit )}>
                 <Field name="query" component={this.renderInput} />
             </form>
-        )
+        );
     }
 }
 
-// Envolvemos con reduxForm
-const WrappedSearchBar = reduxForm({
-    form: 'searchBar'
-})(SearchBar);
-
 // Creamos un wrapper funcional para inyectar navigate
+
 function withNavigation(Component) {
     return function WrappedComponent(props) {
         const navigate = useNavigate();
         return <Component {...props} navigate={navigate} />;
     };
 }
+
+// Envolvemos con reduxForm
+const WrappedSearchBar = reduxForm({
+    form: 'searchBar'
+})(SearchBar);
 
 export default withNavigation(WrappedSearchBar);

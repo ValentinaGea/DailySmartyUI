@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import Logo from './logo';
+import SearchBar from './searchBar';
+import RecentPosts from './recentPosts';
+import ResultsPosts from './resultsPosts';
+
+import { connect } from 'react-redux';
+import * as action from '../actions';
+
 
 class Results extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Results</h1>
-                <Logo/>
-            </div>
-        )
-    }
+  handleSearchBarSubmit = (query) => {
+    this.props.fetchPostsWithQuery(query);
+  }
+  render() {
+    return (
+      <div>
+        <Logo size={55} />
+        <SearchBar onSubmit={this.handleFormSubmit}/>
+        <ResultsPosts/>
+      </div>
+    )
+  }
 }
-export default Results;
+export default connect(null, action)(Results);

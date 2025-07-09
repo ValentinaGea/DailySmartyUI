@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from './logo';
-import SearchBar from './searchBar';
 import RecentPost from './recentPosts';
+import SearchBar from './searchBar';
 
-export default class Home extends Component {
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
+
+function withNavigation(Component) {
+  return function WrappedComponent(props) {
+    const navigate = useNavigate();
+    return <Component {...props} navigate={navigate} />;
+  };
+}
+class Home extends Component {
+handleSearchBarSubmit = (query) => {
+  this.props.fetchPostsWithQuery(query);
+  this.props.navigate(`/results?query=${query}`);
+}
+
+
   render() {
     return (
       <div className='app'>
         <Logo />
-        <SearchBar />
+        <SearchBar onSubmit={this.handleSearchBarSubmit} />
+        
         <RecentPost />
       </div>
     );
   }
 }
+
+const ConnectedHome = connect(null, actions)(Home);
+
+export default withNavigation(ConnectedHome);
