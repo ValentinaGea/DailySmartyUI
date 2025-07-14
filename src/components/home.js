@@ -15,18 +15,18 @@ function withNavigation(Component) {
   };
 }
 class Home extends Component {
-handleSearchBarSubmit = (query) => {
-  this.props.fetchPostsWithQuery(query);
-  this.props.navigate(`/results?query=${query}`);
-}
+
+  handleSearchBarSubmit = (query) => {
+    this.props.fetchPostsWithQuery(query);
+    this.props.navigate(`/results?query=${query}`);
+  }
 
 
   render() {
     return (
-      <div className='app'>
+      <div className='home'>
         <Logo />
         <SearchBar onSubmit={this.handleSearchBarSubmit} />
-        
         <RecentPost />
       </div>
     );

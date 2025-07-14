@@ -20,7 +20,7 @@ class RecentPost extends Component {
     }
 
     return recentPosts.slice(0, 3).map((post, index) => (
-      <Post {...post} key={index} />
+      <Post {...post} key={index} type="recent" />
     ));
   };
 

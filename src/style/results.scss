@@ -1,0 +1,5 @@
+@use './mixins' as *;
+
+.results {
+  @include default-page-layout();
+}

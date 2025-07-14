@@ -13,7 +13,7 @@ export function fetchRecentPosts() {
           associated_topics: ['javascript', 'react', 'redux']
         }));
         dispatch({
-          type: SET_RESULTS_POSTS,
+          type: SET_RECENT_POSTS,
           payload: postsWithTopics
         });
       })
