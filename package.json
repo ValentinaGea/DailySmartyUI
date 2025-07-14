@@ -5,7 +5,7 @@
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress --display-error-details --color",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress",
     "heroku-postbuild": "npm run build",
     "precommit": "eslint src",
     "prod": "NODE_ENV=production node server.js"
@@ -45,7 +45,6 @@
     "babel-loader": "^8.3.0",
     "babel-plugin-async-to-promises": "^1.0.5",
     "bootstrap": "^5.3.7",
-    "copy-webpack-plugin": "^4.5.2",
     "core-js": "^3.43.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
@@ -84,6 +83,7 @@
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^13.0.0",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "eslint-webpack-plugin": "^3.1.1",
     "mini-css-extract-plugin": "^2.9.2",
