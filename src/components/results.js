@@ -7,7 +7,6 @@ import ResultsPosts from './resultsPosts';
 import { connect } from 'react-redux';
 import * as action from '../actions';
 
-
 class Results extends Component {
   handleSearchBarSubmit = (query) => {
     this.props.fetchPostsWithQuery(query);
